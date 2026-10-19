@@ -896,20 +896,21 @@
     );
   }
 
-  function renderAbout(){
-    return (
-      '<div class="container py-10 max-w-2xl">' +
-        '<img src="' + SCHOOL_LOGO_FULL + '" alt="Raha International School" class="about-logo mb-5">' +
-        '<h1 class="font-display h1">About the Osrah System</h1>' +
-        '<p class="body-text mt-4">Every student belongs to one of six Osrahs &mdash; house teams that compete throughout the year in sports, academics, arts, culture, service and school spirit. Points earned in competitions and events add up across the year to decide the season&rsquo;s champion Osrah.</p>' +
-        '<p class="body-text mt-4">Points are recorded by signed-in teachers and admins, with a reason attached to every change, so the standings are always the sum of that history.</p>' +
-        '<h2 class="font-display h2 mt-8 mb-4">The Six Osrahs</h2>' +
-        '<div class="grid-osrah-sm">' + DB.osrahs.map(function(o){
-          return '<div class="chip-row" style="' + (o.useBorderAccent?'border:1.5px solid #1B1F27;':'border:1px solid #F0EEE7;') + '">' +
-            '<span class="dot" style="' + dotStyle(o) + '"></span><span class="chip-name">' + escapeHtml(o.name) + '</span></div>';
-        }).join('') + 
+  function renderAbout(){ 
+  return ( 
+    '<div class="container py-10 max-w-2xl">' + 
+    '<img src="' + SCHOOL_LOGO_FULL + '" alt="Raha International School" class="about-logo mb-5">' + 
+    '<h1 class="font-display h1">About the Osrah System</h1>' + 
+    '<p class="body-text mt-4">Every student belongs to one of six Osrahs &mdash; house teams that compete throughout the year in sports, academics, arts, culture, service and school spirit. Points earned in competitions and events add up across the year to decide the season&rsquo;s champion Osrah.</p>' + 
+    '<p class="body-text mt-4">Points are recorded by signed-in teachers and admins, with a reason attached to every change, so the standings are always the sum of that history.</p>' + 
+    '<h2 class="font-display h2 mt-8 mb-4">The Six Osrahs</h2>' + 
+    '<div class="grid-osrah-sm">' + 
+    DB.osrahs.map(function(o){ 
+      return '<div class="chip-row" style="' + (o.useBorderAccent?'border:1.5px solid #1B1F27;':'border:1px solid #F0EEE7;') + '">' + 
+             '<span class="dot" style="' + dotStyle(o) + '"></span><span class="chip-name">' + escapeHtml(o.name) + '</span></div>'; 
+    }).join('') + 
     '</div>' 
-  ); 
+  );
 }
 
   function renderLogin(){
