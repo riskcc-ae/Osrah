@@ -907,8 +907,10 @@
         '<div class="grid-osrah-sm">' + DB.osrahs.map(function(o){
           return '<div class="chip-row" style="' + (o.useBorderAccent?'border:1.5px solid #1B1F27;':'border:1px solid #F0EEE7;') + '">' +
             '<span class="dot" style="' + dotStyle(o) + '"></span><span class="chip-name">' + escapeHtml(o.name) + '</span></div>';
-        }).join('') + '</div>' +);
-  }
+        }).join('') + 
+    '</div>' 
+  ); 
+}
 
   function renderLogin(){
     return (
