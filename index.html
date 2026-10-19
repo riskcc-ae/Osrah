@@ -908,9 +908,7 @@
           return '<div class="chip-row" style="' + (o.useBorderAccent?'border:1.5px solid #1B1F27;':'border:1px solid #F0EEE7;') + '">' +
             '<span class="dot" style="' + dotStyle(o) + '"></span><span class="chip-name">' + escapeHtml(o.name) + '</span></div>';
         }).join('') + '</div>' +
-        '<div class="note-box mt-8">This is a self-contained demo &mdash; everything is stored only in your browser (localStorage), so it works entirely on GitHub Pages with no server or database. Teacher sign-in just checks a shared access code kept in the page&rsquo;s own code, so treat it as a demo of the interface, not real account security. Clearing your browser&rsquo;s site data resets everything back to zero.</div>' +
-        '<button type="button" class="btn btn-outline-dark btn-sm mt-6 js-reset-demo">Reset demo data</button>' +
-      '</div>'
+        
     );
   }
 
@@ -1229,16 +1227,7 @@
       });
     }
 
-    var resetBtns = document.querySelectorAll('.js-reset-demo');
-    for(var k=0;k<resetBtns.length;k++){
-      resetBtns[k].addEventListener('click', function(){
-        if(!confirm('Reset all demo data? This clears every Osrah, point and competition change stored in this browser.')) return;
-        DB = seedData();
-        saveData(DB);
-        navigate('/');
-      });
-    }
-  }
+
 
   function onLoginSubmit(e){
     e.preventDefault();
