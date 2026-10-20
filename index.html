@@ -1352,35 +1352,38 @@
     navigate('/competitions/' + competitionId);
   }
 
-  function onStaffSubmit(e){
-    e.preventDefault();
-    var user = currentUser();
-    if(!isAdmin(user)) return;
-    var fd = new FormData(e.target);
-    var name = String(fd.get('name')||'').trim();
-    var email = String(fd.get('email')||'').trim().toLowerCase();
-    var role = fd.get('role')==='ADMIN' ? 'ADMIN' : 'TEACHER';
+  (function() {
+    function onStaffSubmit(e){ 
+        e.preventDefault(); 
+        var user = currentUser(); 
+        if(!isAdmin(user)) return; 
+        var fd = new FormData(e.target); 
+        var name = String(fd.get('name')||'').trim(); 
+        var email = String(fd.get('email')||'').trim().toLowerCase(); 
+        var role = fd.get('role')==='ADMIN' ? 'ADMIN' : 'TEACHER'; 
+        if(!name || !email){ 
+            flash = { scope:'staff', type:'error', text:'Fill in both name and email.' }; 
+            render(false); 
+            return; 
+        } 
+        var exists = DB.users.some(function(u){ return u.email.toLowerCase()===email; }); 
+        if(exists){ 
+            flash = { scope:'staff', type:'error', text:'An account with that email already exists.' }; 
+            render(false); 
+            return; 
+        } 
+        DB.users.push({ id: uid(), name: name, email: email, role: role }); 
+        saveData(DB); 
+        flash = { scope:'staff', type:'success', text:name + ' added to the staff roster.' }; 
+        render(false); 
+    } 
 
-    if(!name || !email){
-      flash = { scope:'staff', type:'error', text:'Fill in both name and email.' };
-      render(false);
-      return;
-    }
-    var exists = DB.users.some(function(u){ return u.email.toLowerCase()===email; });
-    if(exists){
-      flash = { scope:'staff', type:'error', text:'An account with that email already exists.' };
-      render(false);
-      return;
-    }
-    DB.users.push({ id: uid(), name: name, email: email, role: role });
-    saveData(DB);
-    flash = { scope:'staff', type:'success', text:name + ' added to the staff roster.' };
-    render(false);
-  }
+    window.addEventListener('hashchange', function(){ render(true); }); 
+    window.addEventListener('DOMContentLoaded', function(){ render(true); }); 
 
-  window.addEventListener('hashchange', function(){ render(true); });
-  window.addEventListener('DOMContentLoaded', function(){ render(true); });
-  if(document.readyState === 'complete' || document.readyState === 'interactive'){ render(true); }
+    if(document.readyState === 'complete' || document.readyState === 'interactive'){ 
+        render(true); 
+    }
 })();
 </script>
 </body>
