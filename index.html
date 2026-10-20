@@ -1227,7 +1227,7 @@
         render(false);
       });
     }
-
+  }
 
 
   function onLoginSubmit(e){
@@ -1351,8 +1351,6 @@
     saveData(DB);
     navigate('/competitions/' + competitionId);
   }
-
-  (function() {
     function onStaffSubmit(e){ 
         e.preventDefault(); 
         var user = currentUser(); 
@@ -1381,10 +1379,10 @@
     window.addEventListener('hashchange', function(){ render(true); }); 
     window.addEventListener('DOMContentLoaded', function(){ render(true); }); 
 
-    if(document.readyState === 'complete' || document.readyState === 'interactive'){ 
-    render(true); 
-  } 
-})(); 
-</script> 
-</body> 
+    if(document.readyState === 'complete' || document.readyState === 'interactive'){
+    render(true);
+  }
+})();
+</script>
+</body>
 </html>
